@@ -9,7 +9,7 @@ define(['curl/plugin/_fetchText', './Advisor'], function (fetchText, Advisor) {
         load: function (resourceName, req, callback, config) {
             fetchText(req.toUrl(resourceName + deviceTypeFileExtension), function(text) {
                 req(['handlebars'], function(Handlebars) {
-                    var result = Handlebars.compile(text);
+                    var result = Handlebars['default'].compile(text);
                     callback(result);
                 });
             }, callback.error || error);
