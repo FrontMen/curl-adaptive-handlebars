@@ -78,10 +78,17 @@ define([], function() {
 		return this.windows() && this.find('touch');
 	};
 
+	Advisor.prototype.smartWatch = function() {
+		return this.find('watch');
+	};
+
 	Advisor.prototype.isOs = function() {
 		return this.android() || this.ios() || this.windows() || this.blackberry() || this.firefoxOs() || this.meego();
 	};
 
+	Advisor.prototype.isWrist = function() {
+		return this.smartWatch()? 'wrist': false;
+	};
 	Advisor.prototype.isPalm = function() {
 		return this.androidPhone() || this.iphone() || this.ipod() || this.windowsPhone() || this.blackberryPhone() || this.firefoxOsPhone() || this.meego()? 'palm': false;
 	};
@@ -92,7 +99,7 @@ define([], function() {
 
 	Advisor.prototype.getDeviceType = function(){
 
-		return this.isLap() || this.isPalm() || '';
+		return this.isWrist() || this.isLap() || this.isPalm() || '';
 	};
 
 	return new Advisor();
